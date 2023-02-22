@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0"
+  },
+  "emmet.includeLanguages": {
+    "njk": "html"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy-fetch": "^3.0.0",
+    "dotenv": "^16.0.3"
+  }
+}

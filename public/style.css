@@ -1,0 +1,77 @@
+html {
+  font-size: 62.5%;
+}
+body {
+
+  background: #447BBE;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+    text-align:center;
+    font-family: arial black;
+    font-size: 45px;
+}
+section {
+  background: #B11313;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: 20px;
+  margin-left:50px;
+  margin-right:50px;
+}
+.card-container {
+    background: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+}
+.card-container:hover .card {
+  opacity: .7;
+  cursor: pointer;
+}
+.card-container .card {
+  margin: 10px;
+  width: calc(50% / 3 - 20px);
+  float: left;
+  box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
+  background: #FFF;
+  -webkit-transition: .3s all ease;
+  transition: .15s all ease;
+}
+.card-container .card:hover {
+  box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
+  transform: scale(1.025);
+  opacity: 1;
+  filter: grayscale(0);
+  transition: .35s all ease;
+}
+.card-container .card img {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.card-container .card .content {
+  padding: 15px 20px;
+}
+.card-container .card h3 {
+  font: 12pt arial;
+  padding: 0;
+  margin: 0 0 10px;
+  letter-spacing: -.075rem
+}
+.card-container .card h4 {
+  font: 11pt arial;
+  padding-top: 10px;
+  margin: 0 0 10px;
+  letter-spacing: -.075rem
+}
+.card-container .card p {
+  color: #888;
+  padding-top: 10px;
+  margin: 0;
+  font: 400 1.6rem/2.2rem 'Open Sans script=all', sans-serif;
+}
