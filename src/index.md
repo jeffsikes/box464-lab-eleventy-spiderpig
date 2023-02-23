@@ -38,8 +38,8 @@ data: marvelCovers
 <div class="flex-container">
 {% for cover in marvelCovers %}
     <article class="cover">
-        <a href="{{ cover.urls[0].url }}" target="_detail">
-        <img src="{{ cover.thumbnail.path }}.{{cover.thumbnail.extension }}" width="300px" alt="Cover of comic titled {{ cover.title }}"/>
+        <a href="{{ cover.urls[0].url | replace: "http:", "https:" }}" target="_detail">
+        <img src="{{ cover.thumbnail.path | replace: "http:", "https:" }}.{{ cover.thumbnail.extension }}" width="300px" alt="Cover of comic titled {{ cover.title }}"/>
         </a>
         <div class="title">
             <p>{{ cover.title }}</p>
