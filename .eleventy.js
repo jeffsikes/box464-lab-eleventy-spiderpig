@@ -1,4 +1,5 @@
 const util = require('util');
+require('dotenv').config();
 const { DateTime } = require('luxon');
 
 module.exports = function(eleventyConfig) {

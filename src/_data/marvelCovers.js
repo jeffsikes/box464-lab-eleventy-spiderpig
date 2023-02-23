@@ -1,21 +1,32 @@
 const EleventyFetch = require("@11ty/eleventy-fetch");
+const md5 = require('md5');
+
+const marvelPublicKey = process.env.MARVEL_PUBLIC_API_KEY;
+const marvelPrivateKey = process.env.MARVEL_PRIVATE_API_KEY;
+const characterId = process.env.MARVEL_CHARACTER_ID;
+
+const currentDateTime = Date.now();
+
+const hashValue = md5(currentDateTime + marvelPrivateKey + marvelPublicKey);
+
 
 module.exports = async function() {
   try {
-    const characterId = "1011347";
-    const url = `https://gateway.marvel.com/v1/public/characters/${characterId}/comics?orderBy=onsaleDate&apikey=bb741a6ced934e0ca6a6db5912d6a6cb&ts=20230101&hash=57651ea717c2aff9598bc1a8018d6036`
+    let url = `https://gateway.marvel.com/v1/public/characters/${characterId}/comics?orderBy=onsaleDate&apikey=${marvelPublicKey}&ts=${currentDateTime}&hash=${hashValue}`
 
-    console.log("Did it get here")
+    console.log("Searching the multiverse for your Marvel comic book character.");
+    console.log(url);
 
     // https://developer.github.com/v3/repos/#get
     let json = await EleventyFetch(url, {
-      duration: "1d", // only fetch once per day
-      type: "json" // also supports "text" or "buffer"
+      duration: "*", // never fetch new data after the first success
+      type: "json", // also supports "text" or "buffer"
+      removeUrlQueryParams: true // our call to the Marvel API creates a unique hash every time it runs, so the cache will generate a new additional file on each run without this set.
     });
 
     return json?.data?.results;
     } catch(e) {
-    console.log( "Failed getting Marvel Comic Covers, returning 0" );
+    console.log("Something went wrong - the multiverse thread was destroyed.");
     return {};
   }
 };

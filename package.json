@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@11ty/eleventy-fetch": "^3.0.0",
-    "dotenv": "^16.0.3"
+    "@picocss/pico": "^1.5.7",
+    "dotenv": "^16.0.3",
+    "md5": "^2.3.0"
   }
 }
