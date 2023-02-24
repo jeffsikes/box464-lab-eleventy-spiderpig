@@ -5,7 +5,7 @@
 
 > Prerequisite Skills: Basics of Eleventy; Markdown; Nunjuks
 
-This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API into your Eleventy generated site.
+This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API and use it in an Eleventy generated site.
 
 It will call the Marvel API, retrieve the most recent 75 comic book covers for a specific character, and display them on an HTML page.
 
