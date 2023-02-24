@@ -1,9 +1,9 @@
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const md5 = require('md5');
 
+const marvelCharacterStartsWith = process.env.MARVEL_CHARACTERS_NAME_STARTS_WITH;
 const marvelPublicKey = process.env.MARVEL_PUBLIC_API_KEY;
 const marvelPrivateKey = process.env.MARVEL_PRIVATE_API_KEY;
-const characterId = process.env.MARVEL_CHARACTER_ID;
 
 const currentDateTime = Date.now();
 
@@ -12,7 +12,7 @@ const hashValue = md5(currentDateTime + marvelPrivateKey + marvelPublicKey);
 
 module.exports = async function() {
   try {
-    let url = `https://gateway.marvel.com/v1/public/characters/${characterId}/comics?orderBy=onsaleDate&limit=50&apikey=${marvelPublicKey}&ts=${currentDateTime}&hash=${hashValue}`
+    let url = `https://gateway.marvel.com/v1/public/characters?nameStartsWith=${marvelCharacterStartsWith}&limit=50&apikey=${marvelPublicKey}&ts=${currentDateTime}&hash=${hashValue}`
 
     // For learning experience, console directives allow for easier identification
     console.log("Searching the multiverse for your Marvel comic book character.");
