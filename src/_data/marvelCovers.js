@@ -20,14 +20,14 @@ module.exports = async function() {
 
     // https://developer.github.com/v3/repos/#get
     let json = await EleventyFetch(url, {
-      duration: "*", // never fetch new data after the first success
+      duration: "1w", // never fetch new data after the first success
       type: "json", // also supports "text" or "buffer"
       verbose: true,
       removeUrlQueryParams: true // our call to the Marvel API creates a unique hash every time it runs, so the cache will generate a new additional file on each run without this set.
     });
 
     // For learning experience, adding console directives 
-    console.log("Marvel API call completed! Results have been stored in the .cache folder.");
+    console.log("Eleventy-Fetch completed! Results have been added or retrieved from the .cache folder.");
 
     return json?.data?.results;
     } catch(e) {

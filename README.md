@@ -1,17 +1,19 @@
 # Learning Lab
-## Eleventy Static Site Generator with API content
-
-This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API into your Eleventy generated site.
-
-It will call the Marvel API, retrieve the most recent 75 comic book covers for a specific character, and display them on an HTML page.
-
-You can see our example here: [Peter Porker, the amazing Spider-Ham](https://spider-ham.box464.com).
+## Eleventy with cached API content
 
 > Date Published: February 23, 2023
 
 > Prerequisite Skills: Basics of Eleventy; Markdown; Nunjuks
 
-Even if you don't have these pre-requisites, if you just want to download this project, change the comic book character, and see the results - you absolutely can. 
+This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API into your Eleventy generated site.
+
+It will call the Marvel API, retrieve the most recent 75 comic book covers for a specific character, and display them on an HTML page.
+
+You can see the example here: [Peter Porker, the amazing Spider-Ham](https://spider-ham.box464.com).
+
+If you just want to download this project and see the results - you absolutely can if you know how to pull down a repository from GitHub. 
+
+# Just show me the spider-pig!
 
 The following technologies are utilized for this build. All are open source or free tier. I'll walk through the installation of the Marvel Dev account. The others will be installed during the build.
 
@@ -33,8 +35,9 @@ I recommend trying out [continuous deployment](https://dev.to/michaelburrows/dep
 ## Concepts to understand
 Eleventy builds static websites, meaning, it generates HTML based on data and templates created through this code. There is no backend server to pull information from a database once the site is deployed. 
 
-Let's get started!
+Eleventy provides a plugin called @eleventy/eleventy-fetch (previously called @eleventy/eleventy-feed) that will fetch data from an API and then store it locally. The neat part is that it has the capability to CACHE the data for any length of time you want. So, you can significantly reduce the number of API calls you are making to your services. Which is especially great when you are charged for each API transaction.
 
+Let's get started!
 # Marvel Developer Portal
 Create a new login or login to your existing [Marvel account](https://www.marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount). If you are creating a new account, be sure to un-tick all the email opt-ins.
 
@@ -42,9 +45,9 @@ Once your account is created, you can go to your [developer account page](https:
 
 You'll need both of these for the lab.
 
-A note here, because we are using this API from our local dev boxes, we can't provide a domain name for an authorized referrer. This requires a bit more work to create a token and a hashed value to pass to the API.
+A note here, because we are using this API from our local dev boxes, we can't provide a domain name for an authorized referrer. This requires us to do a bit more work to create a token and a hashed value to pass to the API.
 
-If you were setting up a client side application using react or vue, you could add you domain to the authorized referrer list to make client API calls without having to create a hash.
+If you were setting up a client side application using React or Vue, you could add your domain to the authorized referrer list to make client API calls without having to create a hash.
 
 You can pull down whatever data you want, as long as you follow these guidelines:
 
@@ -61,27 +64,27 @@ One of the things they recommend, but not required, is to NOT store the data for
 Since this is a lab exercise, I'm assuming you're not setting up a new Marvel Universe store with all the content. Even if you did, tho, you could just setup a continuous build to update every week or so and be fine.
 
 # Let's Go!
-## Ignoring things
+## Ignoring the right things
 Create a .gitignore file if one hasn't already been created at the root of your project.
 
 Add the following items to the file to ensure the node_modules, .env file and .cache directory are excluded from the repository when committed.
 
 **.gitignore**
-
 ```
 node_modules
 .env
 .cache
 ```
 ## Creating .env variables
-An .env file is utilized to keep your secure, private data out of your inline code. These variables can then be transferred into key/value pairs in your deployments to Netlify, so they are never part of the code that gets stored or shown in your repository.
+An .env file is utilized to keep data out of your inline code. These variables can then be transferred into key/value pairs in your deployments to Netlify, so they are never part of the code that gets stored or shown in your repository.
 
-Be sure to add .env to your .gitignore file.
+**Be sure to add .env to your .gitignore file.**
 
 Create an .env file at the root of this project, and add the following lines:
 
 **.env**
 ```
+MARVEL_CHARACTERS_NAME_STARTS_WITH=Spider
 MARVEL_CHARACTER_ID=[MARVEL_CHARACTER_ID] 
 MARVEL_PUBLIC_API_KEY=[YOUR_MARVEL_PUBLIC_API_KEY]
 MARVEL_PRIVATE_API_KEY=[YOUR_MARVEL_PRIVATE_API_KEY]
@@ -91,8 +94,16 @@ These values will be used to call the API and return the most recent 50 comic bo
 
 My favorite character is Spider-Ham, so the default return will be that character id of 1011347.
 
+Not a Spider-Ham fan? Find [your own favorite Spider in the Spiderverse](https://spider-ham.box464.com/characters), and copy the Marvel Character Id. 
+
+Change the .env variable for "MARVEL_CHARACTER_ID" to your preferred character id.
+
+If you have previously run this request with the Spider-Ham character, you'll need to remove the cached data from the .cache file (just delete all the files in the folder).
+
+Then run the build again.
+
 # Install Packages
-As discussed above, there are a few packages to install from the command line.
+There are a few packages to install first.
 
 ```
 npm install
@@ -108,8 +119,8 @@ This should start up a local server in your environment, as well as pull the com
 
 Congratulations! You comic book covers should be displaying.
 
-# But how does it work?
-That's the magic of @eleventy-fetch. It's a wrapper around a simple javascript fetch request, but it has some interesting features. The content it returns is stored in the .cache folder by default, and the content can be configured to be cached. 
+# How does it work?
+That's the magic of @eleventy-fetch. It's a wrapper around a simple javascript fetch request, but it has some interesting features. The content it returns is stored in the .cache folder by default, and the content can be configured to be cached for specific periods of time - it won't make the API call each time you do a build, only after the expiration date on the cache has passed. Neat! 
 
 Here's the call and the configuration I've set by default for this lab.
 
