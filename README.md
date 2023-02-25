@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/39391518-6d33-44ad-8144-a5a0f0abc85a/deploy-status)](https://app.netlify.com/sites/spider-ham/deploys)
 # Learning Lab
 
 ![Peter Porker, the Amazing Spider-Ham](src/peter_porker.png)
