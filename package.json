@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0"
+    "@11ty/eleventy": "^2.0.0",
+    "netlify-plugin-cache": "^1.0.3"
   },
   "emmet.includeLanguages": {
     "njk": "html"
