@@ -5,7 +5,7 @@
 
 > Date Published: February 23, 2023
 
-This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API and use it in an Eleventy generated site.
+This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API, cache it for a week, and use it in an Eleventy generated site.
 
 It will call the Marvel API, retrieve the most recent 75 comic book covers for a specific character, and display them on an HTML page.
 
@@ -22,21 +22,15 @@ Once your account is created, you can go to your [developer account page](https:
 
 You'll need both of these for the lab.
 
-# Ignoring things
-Create a .gitignore file if one hasn't already been created at the root of your project.
+# Clone the repository
+Grab a copy of this repo to work on locally.
 
-Add the following items to the file to ensure the node_modules, .env file and .cache directory are excluded from the repository when committed.
+`https://github.com/jeffsikes/box464-lab-eleventy-spiderpig.git`
 
-**.gitignore**
-```
-node_modules
-.env
-.cache
-```
 ## Creating .env variables
 An .env file is utilized to keep data out of your inline code. These variables can then be transferred into key/value pairs in your deployments to Netlify, if you're going that route, so they are never part of the code that gets stored or shown in your repository.
 
-**Be sure to add .env to your .gitignore file.**
+**Be sure to .env is in your .gitignore file, this project includes it by default.**
 
 Create an .env file at the root of this project, and add the following lines:
 
@@ -57,7 +51,7 @@ Not a Spider-Ham fan? Find [your own favorite Spider in the Spiderverse](https:/
 Change the .env variable for "MARVEL_CHARACTER_ID" to your preferred character id.
 
 # Install Packages
-There are a few packages to install first.
+There are a few packages to install first from the terminal.
 
 ```
 npm install
@@ -76,11 +70,13 @@ npm start
 
 This should start up a local server in your environment, as well as pull the comic book cover data from the API.
 
-> If you have previously run this request with the Spider-Ham character, you'll need to remove the cached data from the .cache file (just delete all the files in the folder). Then run the build again.
+> If you have previously run this request with the Spider-Ham character, and you changed to a different one, you'll need to remove the cached data from the .cache file (just delete all the files in the folder). Then run the build again.
 
 Congratulations! You comic book covers should be displaying.
 
 ![Spider-Ham Comic Book Covers](src/readme_images/marvel-spider-ham-covers.png)
+
+Go have fun - change some code, break things, make it your own. :smile:
 
 # How does it work?
 @eleventy/eleventy-fetch is a wrapper around a simple javascript fetch request, but it has some interesting features. The content it returns is stored in the .cache folder by default, and the content can be configured to be cached for specific periods of time - it won't make the API call each time you do a build, only after the expiration date on the cache has passed. Neat! 
