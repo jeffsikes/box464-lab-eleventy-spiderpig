@@ -3,7 +3,7 @@
 ![Peter Porker, the Amazing Spider-Ham](src/peter_porker.png)
 ## Eleventy with cached API content using eleventy-fetch
 
-> Date Published: February 23, 2023
+> Date Published: February 25, 2023
 
 This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API, cache it for a week, and use it in an Eleventy generated site.
 
