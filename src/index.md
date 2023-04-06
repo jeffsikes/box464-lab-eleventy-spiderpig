@@ -14,4 +14,7 @@ data: marvelCovers
         </div>
     </article>
 {% endfor %}
+    <div class="pageupdates">
+    <em>Page last updated on {{ page.date }}</em>
+    </div>
 </div>

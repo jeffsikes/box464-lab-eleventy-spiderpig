@@ -21,7 +21,7 @@ You'll need a Marvel Developer account. Create a new login or login to your exis
 
 Once your account is created, you can go to your [developer account page](https://developer.marvel.com/account) and see your public and private keys. 
 
-You'll need both of these for the lab.
+You'll need both of these for the lab. 
 
 # Clone the repository
 Grab a copy of this repo to work on locally.
