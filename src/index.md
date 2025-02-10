@@ -3,6 +3,7 @@ title: "Marvel Comic Book Art"
 layout: "base.njk"
 data: marvelCovers
 ---
+
 <div class="flex-container">
 {% for cover in marvelCovers %}
     <article class="cover">
@@ -14,7 +15,7 @@ data: marvelCovers
         </div>
     </article>
 {% endfor %}
-    <div class="pageupdates">
+</div>
+<div class="pageupdates">
     <em>Page last updated on {{ page.date }}</em>
-    </div>
 </div>

@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy": "^3.0.0",
     "netlify-plugin-cache": "^1.0.3"
   },
   "emmet.includeLanguages": {
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-fetch": "^3.0.0",
+    "@11ty/eleventy-upgrade-help": "^3.0.1",
     "@picocss/pico": "^1.5.7",
     "dotenv": "^16.0.3",
     "md5": "^2.3.0"

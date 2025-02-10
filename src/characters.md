@@ -3,6 +3,7 @@ title: "Marvel Characters"
 layout: "base.njk"
 data: marvelCharacters
 ---
+
 <p align="center">Character names that start with "{{ processEnv.characterNameStartsWith }}"</p>
 <div class="flex-container">
 {% for character in marvelCharacters %}
@@ -14,4 +15,7 @@ data: marvelCharacters
         </div>
     </article>
 {% endfor %}
+</div>
+<div class="pageupdates">
+    <em>Page last updated on {{ page.date }}</em>
 </div>

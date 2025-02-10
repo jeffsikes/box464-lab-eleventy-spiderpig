@@ -1,34 +1,35 @@
 header {
-    height: 100px;
+  height: 100px;
 }
 h1 {
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .flex-container {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    align-content: center;
-    margin: 20px;
-    justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: center;
+  margin: 20px;
+  justify-content: center;
 }
 
 article {
-    margin: 15px;
-    width: 400px;
-    height: 640px;
-    text-align: center;
+  margin: 15px;
+  width: 400px;
+  height: 640px;
+  text-align: center;
 }
 .title {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 footer {
-    text-align: center;
+  text-align: center;
 }
-pageupdates {
-    text-align: center;
+.pageupdates {
+  style: block;
+  width: 100%;
+  text-align: center;
 }
-
