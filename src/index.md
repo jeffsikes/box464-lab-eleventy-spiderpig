@@ -1,17 +1,17 @@
 ---
-title: "Marvel Comic Book Art"
+title: "Comic Book Art"
 layout: "base.njk"
-data: marvelCovers
+data: comicVineIssues
 ---
 
 <div class="flex-container">
-{% for cover in marvelCovers %}
+{% for issue in comicVineIssues %}
     <article class="cover">
-        <a href="{{ cover.urls[0].url | replace: "http:", "https:" }}" target="_detail">
-        <img src="{{ cover.thumbnail.path | replace: "http:", "https:" }}.{{ cover.thumbnail.extension }}" width="300px" alt="Cover of comic titled {{ cover.title }}"/>
+        <a href="{{ issue.site_detail_url }}" target="_detail">
+        <img src="{{ issue.image.medium_url }}" width="300px" alt="Cover of comic titled {{ issue.volume.name }} {{ issue.name }}"/>
         </a>
         <div class="title">
-            <p>{{ cover.title }}</p>
+            <p>{{ issue.volume.name }}{% if issue.name %} - {{ issue.name }}{% endif %}</p>
         </div>
     </article>
 {% endfor %}
