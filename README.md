@@ -5,23 +5,20 @@
 ## Eleventy with cached API content using eleventy-fetch
 
 > Date Published: February 25, 2023
+> Updated: November 2025 (migrated to ComicVine API)
 
 This lab demonstrates how to utilize the @eleventy/eleventy-fetch plugin to retrieve data from an API, cache it for a week, and use it in an Eleventy generated site.
 
-It will call the Marvel API, retrieve the most recent 75 comic book covers for a specific character, and display them on an HTML page.
+It will call the ComicVine API, retrieve the most recent 50 comic book covers for a specific character, and display them on an HTML page.
 
 You can see the example here: [Peter Porker, the amazing Spider-Ham](https://spider-ham.box464.com).
 
 This lab will not go into detail about how to setup an eleventy site, but here's [a good starter](https://www.11ty.dev/docs/getting-started/). (not required to complete this lab).
 
-Want a more detailed walk through of the process? My blog post [walks you through all the inner workings](https://box464.com/posts/eleventy-fetch-marvel/) and provides insights into how eleventy-fetch magic makes all this happen.
+# ComicVine API Key
+You'll need a ComicVine API key. Visit the [ComicVine API Documentation](https://comicvine.gamespot.com/api/documentation) to get your API key.
 
-# Marvel Developer Portal
-You'll need a Marvel Developer account. Create a new login or login to your existing [Marvel account](https://www.marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount). If you are creating a new account, **be sure to un-tick all the email opt-ins**.
-
-Once your account is created, you can go to your [developer account page](https://developer.marvel.com/account) and see your public and private keys. 
-
-You'll need both of these for the lab. 
+You'll need this key for the lab. 
 
 # Clone the repository
 Grab a copy of this repo to work on locally.
@@ -37,19 +34,18 @@ Create an .env file at the root of this project, and add the following lines:
 
 **.env**
 ```
-MARVEL_CHARACTERS_NAME_STARTS_WITH=Spider
-MARVEL_CHARACTER_ID=[MARVEL_CHARACTER_ID] 
-MARVEL_PUBLIC_API_KEY=[YOUR_MARVEL_PUBLIC_API_KEY]
-MARVEL_PRIVATE_API_KEY=[YOUR_MARVEL_PRIVATE_API_KEY]
+COMICVINE_API_KEY=[YOUR_COMICVINE_API_KEY]
+COMICVINE_CHARACTER_ID=8682
+COMICVINE_CHARACTER_NAME=Spider-Ham
 ```
 
 These values will be used to call the API and return the most recent 50 comic book covers for that character.
 
-My favorite character is Spider-Ham, so for him, use a MARVEL_CHARACTER_ID of 1011347.
+My favorite character is Spider-Ham, so for him, use a COMICVINE_CHARACTER_ID of 8682.
 
-Not a Spider-Ham fan? Find [your own favorite Spider in the Spiderverse](https://spider-ham.box464.com/characters), and copy the Marvel Character Id. 
+Not a Spider-Ham fan? You can search for your favorite character on [ComicVine](https://comicvine.gamespot.com) and find their character ID in the URL (format: 4005-XXXX where XXXX is the ID).
 
-Change the .env variable for "MARVEL_CHARACTER_ID" to your preferred character id.
+Change the .env variables for "COMICVINE_CHARACTER_ID" and "COMICVINE_CHARACTER_NAME" to your preferred character.
 
 # Install Packages
 There are a few packages to install first from the terminal.
@@ -80,36 +76,34 @@ Congratulations! You comic book covers should be displaying.
 Go have fun - change some code, break things, make it your own. :smile:
 
 # How does it work?
-@eleventy/eleventy-fetch is a wrapper around a simple javascript fetch request, but it has some interesting features. The content it returns is stored in the .cache folder by default, and the content can be configured to be cached for specific periods of time - it won't make the API call each time you do a build, only after the expiration date on the cache has passed. Neat! 
+@eleventy/eleventy-fetch is a wrapper around a simple javascript fetch request, but it has some interesting features. The content it returns is stored in the .cache folder by default, and the content can be configured to be cached for specific periods of time - it won't make the API call each time you do a build, only after the expiration date on the cache has passed. Neat!
 
 Here's the call and the configuration I've set by default for this lab.
 
-This little bit of magic can be found in /src/_data/marvelCovers.js
+This little bit of magic can be found in [src/_data/comicVineIssues.js](src/_data/comicVineIssues.js)
 
 ```
 let json = await EleventyFetch(url, {
-      duration: "1w", // only fetch new data after 1 week 
+      duration: "1w", // only fetch new data after 1 week
       type: "json", // also supports "text" or "buffer"
-      removeUrlQueryParams: true 
+      verbose: true
     });
 ```
 # Build Dependencies
 The following technologies are utilized for this build. All are open source or free tier. The others will be installed during the build.
 
-* [Marvel Developer API](https://developer.marvel.com/) (requires account, but free)
+* [ComicVine API](https://comicvine.gamespot.com/api/documentation) (requires API key, but free)
 * [Eleventy](https://www.11ty.dev/)
 * [Eleventy Plugin: @eleventy/eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/)
-* [Nunjuks Templating Language](https://mozilla.github.io/nunjucks/templating.html)
+* [Nunjucks Templating Language](https://mozilla.github.io/nunjucks/templating.html)
 * [Markdown Language](https://www.markdownguide.org/)
 * [Pico CSS](https://picocss.com/)
 * [Dotenv](https://github.com/motdotla/dotenv)
-* [MD5 hashing](https://github.com/motdotla/dotenv)
 
 # Reference Material
 * https://www.11ty.dev/docs/plugins/fetch/
 * https://picocss.com/docs/
-* https://developer.marvel.com/documentation/authorization
+* https://comicvine.gamespot.com/api/documentation
 * https://github.com/motdotla/dotenv
-* https://github.com/pvorb/node-md5
 * https://github.com/jakejarvis/netlify-plugin-cache
 

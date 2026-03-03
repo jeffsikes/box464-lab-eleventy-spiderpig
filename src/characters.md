@@ -1,17 +1,24 @@
 ---
-title: "Marvel Characters"
+title: "Comic Characters"
 layout: "base.njk"
-data: marvelCharacters
+data: comicVineCharacters
 ---
-<p align="center">Character names that start with "{{ processEnv.characterNameStartsWith }}"</p>
+
+<p align="center">Characters matching "{{ processEnv.characterName }}"</p>
 <div class="flex-container">
-{% for character in marvelCharacters %}
+{% for character in comicVineCharacters %}
     <article class="cover">
-        <img src="{{ character.thumbnail.path | replace: "http:", "https:" }}.{{ character.thumbnail.extension }}" width="300px" alt="Character drawing of {{ character.name }}"/>
+        <a href="{{ character.site_detail_url }}" target="_detail">
+        <img src="{{ character.image.medium_url }}" width="300px" alt="Character drawing of {{ character.name }}"/>
+        </a>
         <div class="title">
             {{ character.name }}<br/>
-            <b>Marvel Character Id:</b> {{ character.id }}
+            {% if character.real_name %}<em>{{ character.real_name }}</em><br/>{% endif %}
+            <b>ComicVine Character Id:</b> {{ character.id }}
         </div>
     </article>
 {% endfor %}
+</div>
+<div class="pageupdates">
+    <em>Page last updated on {{ page.date }}</em>
 </div>
