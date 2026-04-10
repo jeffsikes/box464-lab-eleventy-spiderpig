@@ -9,12 +9,11 @@ module.exports = async function() {
     let characterUrl = `https://comicvine.gamespot.com/api/character/4005-${characterId}/?api_key=${comicVineApiKey}&format=json&field_list=issue_credits`;
 
     console.log("Fetching character details from ComicVine...");
-    console.log(characterUrl);
 
     let characterData = await EleventyFetch(characterUrl, {
       duration: "1w",
       type: "json",
-      verbose: true
+      verbose: false
     });
 
     // Get the issue IDs from the character's issue credits
@@ -36,7 +35,7 @@ module.exports = async function() {
     let issuesData = await EleventyFetch(issuesUrl, {
       duration: "1w",
       type: "json",
-      verbose: true
+      verbose: false
     });
 
     console.log("Eleventy-Fetch completed! Results have been added or retrieved from the .cache folder.");

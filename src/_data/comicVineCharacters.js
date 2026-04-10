@@ -8,15 +8,13 @@ module.exports = async function() {
     // ComicVine API search endpoint for characters
     let url = `https://comicvine.gamespot.com/api/search/?api_key=${comicVineApiKey}&format=json&query=${encodeURIComponent(characterName)}&resources=character&limit=50&field_list=id,name,real_name,image,site_detail_url,deck`;
 
-    // For learning experience, console directives allow for easier identification
     console.log("Searching ComicVine for comic book characters.");
-    console.log(url);
 
     // https://www.11ty.dev/docs/plugins/fetch/
     let json = await EleventyFetch(url, {
       duration: "*", // never fetch new data after the first success
       type: "json", // also supports "text" or "buffer"
-      verbose: true
+      verbose: false
     });
 
     // For learning experience, adding console directives

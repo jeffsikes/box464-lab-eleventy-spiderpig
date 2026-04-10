@@ -3,6 +3,7 @@ require('dotenv').config();
 const { DateTime } = require('luxon');
 
 module.exports = function(eleventyConfig) {
+    eleventyConfig.addPassthroughCopy({"./node_modules/@picocss/pico/css/pico.min.css": "css/pico.min.css"});
     eleventyConfig.addPassthroughCopy("./src/style.css");
     eleventyConfig.addPassthroughCopy("./src/peter_porker.png");
     eleventyConfig.addFilter("postDate", (dateObj) => {
