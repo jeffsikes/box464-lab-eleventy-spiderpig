@@ -1,12 +1,5 @@
 {
-  "devDependencies": {
-    "@11ty/eleventy": "^3.1.2",
-    "netlify-plugin-cache": "^1.0.3"
-  },
-  "emmet.includeLanguages": {
-    "njk": "html"
-  },
-  "main": "index.js",
+  "name": "box464-lab-eleventy-spiderpig",
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy"
@@ -15,5 +8,9 @@
     "@11ty/eleventy-fetch": "^5.1.1",
     "@picocss/pico": "^2.1.1",
     "dotenv": "^17.3.1"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "netlify-plugin-cache": "^1.0.3"
   }
 }
